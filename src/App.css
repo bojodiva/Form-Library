@@ -1,0 +1,39 @@
+/* main {
+  text-align: center;
+  vertical-align: center;
+  line-height: 100vh
+} */
+
+table, td{
+  border: 1px solid black;
+  white-space: none;
+  overflow: none;
+}
+table{
+  width: 100%;
+}
+
+.ui--section{
+  width: 30%;
+  margin-left: 100px;
+  margin-bottom: 30px;
+}
+
+.input--single{
+  margin: 10px;
+}
+
+input{
+  padding: 4px;
+}
+
+.submit--button{
+  width: 100%;
+  margin: 10px;
+  text-align: center;
+  background-color: black;
+  color: white;
+  display: grid;
+  align-items: center;
+  padding: 10px;
+}
