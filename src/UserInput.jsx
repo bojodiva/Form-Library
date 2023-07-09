@@ -58,6 +58,8 @@ event.preventDefault();
       <UserTable tableData={tableData}/>
     </>
   )
+
+  
 }
 
 //deletion - cross button for delete
