@@ -7,7 +7,8 @@ export default function UserInput() {
     name: "",
     email: "",
     password: "",
-    address: ""
+    address: "",
+    id: ""
   }
   )
   const [tableData, setTableData] = useState([]);
@@ -66,12 +67,13 @@ export default function UserInput() {
   }
 
 
-
+let lastId = 0;
   const addContact = (event) => {
     event.preventDefault();
     const { name, email, password, address } = user;
     if (name.trim() !== '' && email.trim() !== '' && address.trim !== '' && password.trim() !== '') {
-      setTableData([...tableData, user]);
+       const newUser = { ...user, id: ++lastId };
+    setTableData([...tableData, newUser]);
       setUser({
         name: "",
         email: "",
@@ -83,14 +85,27 @@ export default function UserInput() {
 
 
 
-  const deleteContact = (event) => {
-    const idValue = parseInt(event.target.value, 10);
-    const updatedState = tableData.filter(checkContact);
-    function checkContact(data) {
-      return data.id !== idValue;
-    }
-    setTableData(updatedState);
+  // const deleteContact = (id) => {
+  //   const updatedState = tableData.filter(checkContact);
+  //   function checkContact(data) {
+  //     return data.id !== id;
+  //   }
+  //   setTableData(updatedState);
+  // }
+
+const deleteContact = (id) => {
+  const index = tableData.findIndex((data) => data.id === id);
+  if (index !== -1) {
+    const updatedData = [...tableData];
+    updatedData.splice(index, 1);
+    setTableData(updatedData);
   }
+};
+
+
+
+  
+  
 
 const isFormValid = !errors.email && !errors.password;
 
@@ -100,7 +115,7 @@ const isFormValid = !errors.email && !errors.password;
       <form className="ui--section" onSubmit={addContact}>
         <div className="input--single">
           <label for="name">*Name</label>
-          <input type="text" id="name" value={user.name} onChange={handleChange} />
+          <input type="text" id="name" value={user.name} onChange={handleChange} required/>
         </div>
         <div className="input--single">
           <label for="email">*Email</label>
@@ -114,7 +129,7 @@ const isFormValid = !errors.email && !errors.password;
         </div>
         <div className="input--single">
           <label for="address">*Address </label>
-          <textarea id="address" value={user.address} onChange={handleChange}></textarea>
+          <textarea id="address" value={user.address} onChange={handleChange} required></textarea>
         </div>
         <div>
           <button type="submit" className="submit--button" disabled={!isFormValid}>Submit</button>
