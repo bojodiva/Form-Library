@@ -67,13 +67,12 @@ export default function UserInput() {
   }
 
 
-let lastId = 0;
+
   const addContact = (event) => {
     event.preventDefault();
     const { name, email, password, address } = user;
     if (name.trim() !== '' && email.trim() !== '' && address.trim !== '' && password.trim() !== '') {
-       const newUser = { ...user, id: ++lastId };
-    setTableData([...tableData, newUser]);
+    setTableData([...tableData, user]);
       setUser({
         name: "",
         email: "",
